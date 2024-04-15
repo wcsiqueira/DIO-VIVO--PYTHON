@@ -8,10 +8,10 @@ menu = """
 => """
 
 saldo = 0
-limite = 500
+limite = 850
 extrato = ""
 numero_saques = 0
-LIMITE_SAQUES = 3
+LIMITE_SAQUES = 4
 
 while True:
 
