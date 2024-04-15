@@ -1,0 +1,6 @@
+{
+  "CodeGPT.query.language": "Portuguese",
+  "CodeGPT.Autocomplete.maxTokens": 800,
+  "CodeGPT.apiKey": "OpenAI",
+  "git.ignoreLimitWarning": true
+}
