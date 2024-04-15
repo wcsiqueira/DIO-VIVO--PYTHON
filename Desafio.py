@@ -52,7 +52,7 @@ def sair():
     global continuar
     continuar = False
 
-# Mapeamento das opções para as funções correspondentes
+# Utilizando as   opções para as funções correspondentes
 opcoes = {
     "d": depositar,
     "s": sacar,
