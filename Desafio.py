@@ -37,7 +37,7 @@ opcoes = {
     "e": mostrar_extrato,
     "q": sair
 }
->>>>>>> 958c79661ff456fb04f7ccd236441b00040bb7f2
+
 
         excedeu_saldo = valor > saldo
         excedeu_limite = valor > limite
