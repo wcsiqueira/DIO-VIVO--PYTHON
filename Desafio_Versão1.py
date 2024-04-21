@@ -1,4 +1,4 @@
-import textwrap # Importação da biblioteca textwrap para formatação do texto
+import textwrap # Importação da biblioteca textwrap para formatação do texto como mostrado no video de instrução 
 
  # Modificação do Menu, onde foi feita a adição de novas opções, como a opção de criar um novo usuário e listar contas
  # e a opção de criar uma nova conta, onde é solicitado o CPF do usuário e após a inserção do CPF é feita a validação
