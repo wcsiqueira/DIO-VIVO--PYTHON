@@ -1,6 +1,8 @@
-import textwrap
+import textwrap # Importação da biblioteca textwrap para formatação do texto
 
-
+ # Modificação do Menu, onde foi feita a adição de novas opções, como a opção de criar um novo usuário e listar contas
+ # e a opção de criar uma nova conta, onde é solicitado o CPF do usuário e após a inserção do CPF é feita a validação
+ 
 def menu():
     menu = """\n
     ================ MENU ================
@@ -14,7 +16,7 @@ def menu():
     => """
     return input(textwrap.dedent(menu))
 
-
+#Em depositar feita a validação do valor do depósito, sendo o valor seja maior que 0 é feito o depósito
 def depositar(saldo, valor, extrato):
     if valor > 0:
         saldo += valor
@@ -24,7 +26,8 @@ def depositar(saldo, valor, extrato):
         print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
     return saldo, extrato
 
-
+# Com definição da função sacar, foi feita a validação do saldo, limite e número de saques
+# caso o valor do saque seja maior que o saldo é exibida a mensagem "Você não tem saldo suficiente."
 def sacar(saldo, valor, extrato, *, limite, numero_saques, limite_saques):
     excedeu_saldo = valor > saldo
     excedeu_limite = valor > limite
@@ -45,14 +48,18 @@ def sacar(saldo, valor, extrato, *, limite, numero_saques, limite_saques):
         print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
     return saldo, extrato
 
-
+#Através da Função exibir_extrato é feita a exibição do extrato, onde é exibido o saldo e as movimentações realizadas
+#caso não tenha movimentações é exibida a mensagem "Não foram realizadas movimentações."
+#e após a exibição do extrato é exibido o saldo atual
 def exibir_extrato(saldo, *, extrato):
     print("\n================ EXTRATO ================")
     print("Não foram realizadas movimentações." if not extrato else extrato)
     print(f"\nSaldo:\t\tR$ {saldo:.2f}")
     print("==========================================")
 
-
+# Para está Função foi feita a criação de um novo usuário, onde é solicitado o CPF, nome, data de nascimento e endereço
+# e após a inserção dos dados é feita a validação se o usuário já existe, caso exista é exibida uma mensagem de erro
+# caso não exista é criado um novo usuário e exibida uma mensagem de sucesso
 def criar_usuario(usuarios):
     cpf = input("Informe o CPF (somente número): ")
     usuario = filtrar_usuario(cpf, usuarios)
@@ -65,7 +72,7 @@ def criar_usuario(usuarios):
     usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
     print("=== Usuário criado com sucesso! ===")
 
-
+# nesta função foi feita a filtragem do usuário pelo cpf informado
 def filtrar_usuario(cpf, usuarios):
     usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
     return usuarios_filtrados[0] if usuarios_filtrados else None
@@ -102,7 +109,7 @@ def main():
     contas = []
     while True:
         opcao = menu()
-        #Fiz a adicioção da função match, testanto e aplicando conceitos vistos  nas aulas ( switcase em outras linguagem)
+        #Fiz a adição da função match, testanto e aplicando conceitos vistos  nas aulas ( switcase em outras linguagem)
         match opcao:
             case "d":
                 valor = float(input("Informe o valor do depósito: "))
