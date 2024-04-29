@@ -123,6 +123,7 @@ def main():
     usuarios = []
     contas = []
 
+    # Lista de opções do menu, cada opção é uma tupla contendo a letra da opção e sua descrição.
     opcoes_menu = [
         ("d", "Depositar"),
         ("s", "Sacar"),
@@ -133,18 +134,25 @@ def main():
         ("q", "Sair"),
     ]
 
+    # Loop principal que mantém o programa em execução até que o usuário escolha sair.
     while True:
+        # Exibe o menu na tela para que o usuário possa ver as opções disponíveis.
         print("\n=== MENU ===")
+        # Itera sobre a lista de opções do menu e imprime cada opção na tela.
         for opcao, descricao in opcoes_menu:
             print(f"{opcao}: {descricao}")
 
+        # Solicita ao usuário que escolha uma opção do menu e armazena a escolha na variável 'opcao'.
         opcao = input("Escolha uma opção: ")
 
+        # Utiliza a estrutura 'match' para realizar uma ação com base na opção escolhida pelo usuário.
         match opcao:
+            # a opção escolhida seja 'd', realiza um depósito na conta.
             case "d":
                 valor = float(input("Informe o valor do depósito: "))
                 saldo, extrato = depositar(saldo, valor, extrato)
 
+            # a opção escolhida seja 's', realiza um saque na conta.
             case "s":
                 valor = float(input("Informe o valor do saque: "))
                 saldo, extrato = sacar(
@@ -156,29 +164,33 @@ def main():
                     limite_saques=LIMITE_SAQUES,
                 )
 
+            #  opção escolhida seja 'e', exibe o extrato da conta.
             case "e":
                 exibir_extrato(saldo, extrato=extrato)
 
+            #  opção escolhida seja 'nu', cria um novo usuário.
             case "nu":
                 criar_usuario(usuarios)
 
+            # opção escolhida seja 'nc', cria uma nova conta.
             case "nc":
                 numero_conta = len(contas) + 1
                 conta = criar_conta(AGENCIA, numero_conta, usuarios)
-
                 if conta:
                     contas.append(conta)
 
+            # opção escolhida seja 'lc', lista todas as contas.
             case "lc":
                 listar_contas(contas)
 
+            # opção escolhida seja 'q', encerra o programa.
             case "q":
                 break
 
+            # opção escolhida não corresponda a nenhuma das opções anteriores, exibe uma mensagem de erro.
             case _:
                 print(
-                    "Operação inválida, por favor selecione novamente a operação desejada."
-                )
+                    "Operação inválida, por favor selecione novamente a operação desejada." )               )
 
 
 main()
