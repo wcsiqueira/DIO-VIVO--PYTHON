@@ -14,7 +14,7 @@ def menu():
     => """
     return input(textwrap.dedent(menu))
 
-
+ #corrgido na resolução anteriormente havia conflito  com a função depositar
 def depositar(saldo, valor, extrato, /):
     if valor > 0:
         saldo += valor
@@ -24,6 +24,25 @@ def depositar(saldo, valor, extrato, /):
         print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
 
     return saldo, extrato
+
+def depositar(saldo, valor, extrato):
+    """
+    Realiza um depósito na conta do cliente.   
+ O que era esperado na saida não estava ocorrendo e foi solucionado junto a resolução 
+    Returns:
+        saldo (float): Saldo atualizado da conta.
+        extrato (str): Histórico de transações atualizado da conta.
+    """
+
+    if valor > 0:
+        saldo += valor
+        extrato += f"Depósito:\tR$ {valor:.2f}\n"
+        print("\n=== Depósito realizado com sucesso! ===")
+    else:
+        print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
+
+    return saldo, extrato
+
 
 
 def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
@@ -84,7 +103,7 @@ def criar_usuario(usuarios):
 
     print("=== Usuário criado com sucesso! ===")
 
-
+ # Função corrigida na Resolução do Desafio 
 def filtrar_usuario(cpf, usuarios):
     usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
     return usuarios_filtrados[0] if usuarios_filtrados else None
