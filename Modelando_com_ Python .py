@@ -14,7 +14,8 @@ def menu():
     => """
     return input(textwrap.dedent(menu))
 
- #corrgido na resolução anteriormente havia conflito  com a função depositar
+
+# corrgido na resolução anteriormente havia conflito  com a função depositar
 def depositar(saldo, valor, extrato, /):
     if valor > 0:
         saldo += valor
@@ -25,13 +26,14 @@ def depositar(saldo, valor, extrato, /):
 
     return saldo, extrato
 
+
 def depositar(saldo, valor, extrato):
     """
-    Realiza um depósito na conta do cliente.   
- O que era esperado na saida não estava ocorrendo e foi solucionado junto a resolução 
-    Returns:
-        saldo (float): Saldo atualizado da conta.
-        extrato (str): Histórico de transações atualizado da conta.
+       Realiza um depósito na conta do cliente.
+    O que era esperado na saida não estava ocorrendo e foi solucionado junto a resolução
+       Returns:
+           saldo (float): Saldo atualizado da conta.
+           extrato (str): Histórico de transações atualizado da conta.
     """
 
     if valor > 0:
@@ -42,7 +44,6 @@ def depositar(saldo, valor, extrato):
         print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
 
     return saldo, extrato
-
 
 
 def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
@@ -103,7 +104,8 @@ def criar_usuario(usuarios):
 
     print("=== Usuário criado com sucesso! ===")
 
- # Função corrigida na Resolução do Desafio 
+
+# Função corrigida na Resolução do Desafio
 def filtrar_usuario(cpf, usuarios):
     usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
     return usuarios_filtrados[0] if usuarios_filtrados else None
@@ -132,17 +134,23 @@ def listar_contas(contas):
 
 
 def main():
-    LIMITE_SAQUES = 3
-    AGENCIA = "0001"
+    """
+    Função principal do programa que simula um sistema bancário.
+    """
 
-    saldo = 0
-    limite = 500
-    extrato = ""
-    numero_saques = 0
-    usuarios = []
-    contas = []
+    # Constantes
+    LIMITE_SAQUES = 5  # Limite de saques diários
+    AGENCIA = "0001"  # Código da agência
 
-    # Lista de opções do menu, cada opção é uma tupla contendo a letra da opção e sua descrição.
+    # Variáveis
+    saldo = 0  # Inicia com  Saldo da conta
+    limite = 1200  # Limite da conta
+    extrato = ""  # Histórico de transações
+    numero_saques = 0  # Número de saques realizados no dia
+    usuarios = []  # Lista de usuários cadastrados
+    contas = []  # Lista de contas
+
+    # Menu principal
     opcoes_menu = [
         ("d", "Depositar"),
         ("s", "Sacar"),
@@ -153,26 +161,25 @@ def main():
         ("q", "Sair"),
     ]
 
-    # Loop principal que mantém o programa em execução até que o usuário escolha sair.
+    # Loop principal
     while True:
-        # Exibe o menu na tela para que o usuário possa ver as opções disponíveis.
+        # Exibir menu
         print("\n=== MENU ===")
-        # Itera sobre a lista de opções do menu e imprime cada opção na tela.
         for opcao, descricao in opcoes_menu:
             print(f"{opcao}: {descricao}")
 
-        # Solicita ao usuário que escolha uma opção do menu e armazena a escolha na variável 'opcao'.
+        # Obter escolha do usuário
         opcao = input("Escolha uma opção: ")
 
-        # Utiliza a estrutura 'match' para realizar uma ação com base na opção escolhida pelo usuário.
+        # Processar escolha do usuário
         match opcao:
-            # a opção escolhida seja 'd', realiza um depósito na conta.
             case "d":
+                # Depositar
                 valor = float(input("Informe o valor do depósito: "))
                 saldo, extrato = depositar(saldo, valor, extrato)
 
-            # a opção escolhida seja 's', realiza um saque na conta.
             case "s":
+                # Sacar
                 valor = float(input("Informe o valor do saque: "))
                 saldo, extrato = sacar(
                     saldo=saldo,
@@ -183,33 +190,34 @@ def main():
                     limite_saques=LIMITE_SAQUES,
                 )
 
-            #  opção escolhida seja 'e', exibe o extrato da conta.
             case "e":
+                # Exibir extrato
                 exibir_extrato(saldo, extrato=extrato)
 
-            #  opção escolhida seja 'nu', cria um novo usuário.
             case "nu":
+                # Criar usuário
                 criar_usuario(usuarios)
 
-            # opção escolhida seja 'nc', cria uma nova conta.
             case "nc":
+                # Criar conta
                 numero_conta = len(contas) + 1
                 conta = criar_conta(AGENCIA, numero_conta, usuarios)
                 if conta:
                     contas.append(conta)
 
-            # opção escolhida seja 'lc', lista todas as contas.
             case "lc":
+                # Listar contas
                 listar_contas(contas)
 
-            # opção escolhida seja 'q', encerra o programa.
             case "q":
+                # Sair
                 break
 
-            # opção escolhida não corresponda a nenhuma das opções anteriores, exibe uma mensagem de erro.
             case _:
+                # Opção inválida
                 print(
-                    "Operação inválida, por favor selecione novamente a operação desejada." )               )
+                    "Operação inválida, por favor selecione novamente a operação desejada."
+                )
 
 
 main()
