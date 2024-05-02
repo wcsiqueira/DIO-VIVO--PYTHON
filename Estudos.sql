@@ -65,4 +65,4 @@ create table nome_da_tabela (
     coluna3 tipo_de_dado
 );
 
-*/
+
