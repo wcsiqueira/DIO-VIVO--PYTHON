@@ -65,4 +65,58 @@ create table nome_da_tabela (
     coluna3 tipo_de_dado
 );
 
+Tabelas são estruturas que armazenam dados de forma organizada LINHA E COLUNAS 
+colunas  são os campos da tabela
+registro é uma linha da tabela pode ser uma tupla 
+ creat é a instancia da tabela , a coluna o tipo de coluna e pode adicionar comentarios 
+    insert into nome_da_tabela (coluna1, coluna2, coluna3) values (valor1, valor2, valor3);
+    tipos de dados  
+    int - inteiro
+    varchar - texto
+    date - data
+    time - hora
+    boolean - verdadeiro ou falso
+    float - numero decimal
+    double - numero decimal
+    char - caractere
+    text - texto longo 
+    blob - binario
+    enum - enumerado
 
+    Comandos :
+
+    restrições do valor 
+    Not Null 
+    unique
+   default
+    check
+ Chaves primarias e estrangeiras 
+ Auto incremento ,Importante para chave primaria , serve para qualquer tipo de informação incremental 
+
+
+ create table usuario (
+    id int auto_increment primary key,
+    nome varchar(255) not null, "nome do usuario"
+    email varchar(100) not null unique,"email do usuario UNIQUE PARA RESTRIÇÃO DE EMAILS IGUAIS"
+    senha varchar(50) not null, "le deve ser orbrigatorios"
+    data_cadastro date not null default current_date "data de cadastro do usuario"
+
+
+ )
+
+
+
+ Teblas de resgitro e de Destinos 
+ 
+
+ Create table livro (
+    id int auto_increment primary key,
+    titulo varchar(255) not null,
+    autor varchar(100) not null,
+    editora varchar(100) not null,
+    ano_publicacao date not null,
+    genero varchar(50) not null,
+    quantidade int not null,
+    disponivel boolean not null default true,
+    data_cadastro date not null default current_date
+ );

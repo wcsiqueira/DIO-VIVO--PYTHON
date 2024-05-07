@@ -30,3 +30,23 @@ print(produto!=produto2)   # True
  #Operadores de asssociação 
  #saber se a palavra está presente na strint  utilizando operadores de associação 
  
+ def insere(estrutura, elemento):
+    estrutura.append(elemento)
+    return estrutura
+
+def remove(estrutura):
+    if len(estrutura) > 0:  # Verifica se a estrutura não está vazia
+        return estrutura.pop(0)
+    else:
+        print("ERROR: A estrutura está vazia")
+        return None  # Retorna None se a estrutura estiver vazia
+
+estrutura = []
+insere(estrutura, 1)
+insere(estrutura, 22)
+insere(estrutura, 333)
+insere(estrutura, 4444)
+while len(estrutura) > 0:
+    print(remove(estrutura))
+
+       

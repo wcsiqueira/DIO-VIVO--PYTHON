@@ -1,8 +1,9 @@
-import textwrap # Importação da biblioteca textwrap para formatação do texto como mostrado no video de instrução 
+import textwrap  # Importação da biblioteca textwrap para formatação do texto como mostrado no video de instrução
 
- # Modificação do Menu, onde foi feita a adição de novas opções, como a opção de criar um novo usuário e listar contas
- # e a opção de criar uma nova conta, onde é solicitado o CPF do usuário e após a inserção do CPF é feita a validação
- 
+# Modificação do Menu, onde foi feita a adição de novas opções, como a opção de criar um novo usuário e listar contas
+# e a opção de criar uma nova conta, onde é solicitado o CPF do usuário e após a inserção do CPF é feita a validação
+
+
 def menu():
     menu = """\n
     ================ MENU ================
@@ -16,7 +17,8 @@ def menu():
     => """
     return input(textwrap.dedent(menu))
 
-#Em depositar feita a validação do valor do depósito, sendo o valor seja maior que 0 é feito o depósito
+
+# Em depositar feita a validação do valor do depósito, sendo o valor seja maior que 0 é feito o depósito
 def depositar(saldo, valor, extrato):
     if valor > 0:
         saldo += valor
@@ -25,6 +27,7 @@ def depositar(saldo, valor, extrato):
     else:
         print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
     return saldo, extrato
+
 
 # Com definição da função sacar, foi feita a validação do saldo, limite e número de saques
 # caso o valor do saque seja maior que o saldo é exibida a mensagem "Você não tem saldo suficiente."
@@ -48,14 +51,16 @@ def sacar(saldo, valor, extrato, *, limite, numero_saques, limite_saques):
         print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
     return saldo, extrato
 
-#Através da Função exibir_extrato é feita a exibição do extrato, onde é exibido o saldo e as movimentações realizadas
-#caso não tenha movimentações é exibida a mensagem "Não foram realizadas movimentações."
-#e após a exibição do extrato é exibido o saldo atual
+
+# Através da Função exibir_extrato é feita a exibição do extrato, onde é exibido o saldo e as movimentações realizadas
+# caso não tenha movimentações é exibida a mensagem "Não foram realizadas movimentações."
+# e após a exibição do extrato é exibido o saldo atual
 def exibir_extrato(saldo, *, extrato):
     print("\n================ EXTRATO ================")
     print("Não foram realizadas movimentações." if not extrato else extrato)
     print(f"\nSaldo:\t\tR$ {saldo:.2f}")
     print("==========================================")
+
 
 # Para está Função foi feita a criação de um novo usuário, onde é solicitado o CPF, nome, data de nascimento e endereço
 # e após a inserção dos dados é feita a validação se o usuário já existe, caso exista é exibida uma mensagem de erro
@@ -68,9 +73,19 @@ def criar_usuario(usuarios):
         return
     nome = input("Informe o nome completo: ")
     data_nascimento = input("Informe a data de nascimento (dd-mm-aaaa): ")
-    endereco = input("Informe o endereço (logradouro, nro - bairro - cidade/sigla estado): ")
-    usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
+    endereco = input(
+        "Informe o endereço (logradouro, nro - bairro - cidade/sigla estado): "
+    )
+    usuarios.append(
+        {
+            "nome": nome,
+            "data_nascimento": data_nascimento,
+            "cpf": cpf,
+            "endereco": endereco,
+        }
+    )
     print("=== Usuário criado com sucesso! ===")
+
 
 # nesta função foi feita a filtragem do usuário pelo cpf informado
 def filtrar_usuario(cpf, usuarios):
@@ -109,7 +124,7 @@ def main():
     contas = []
     while True:
         opcao = menu()
-        #Fiz a adição da função match, testanto e aplicando conceitos vistos  nas aulas ( switcase em outras linguagem)
+        # Fiz a adição da função match, testanto e aplicando conceitos vistos  nas aulas ( switcase em outras linguagem)
         match opcao:
             case "d":
                 valor = float(input("Informe o valor do depósito: "))
@@ -138,7 +153,9 @@ def main():
             case "q":
                 break
             case _:
-                print("Operação inválida, por favor selecione novamente a operação desejada.")
+                print(
+                    "Operação inválida, por favor selecione novamente a operação desejada."
+                )
 
 
 main()
